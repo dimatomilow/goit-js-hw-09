@@ -32,8 +32,8 @@ const refs = {
 }
 
 let selectDate ;
+ refs.buttonStart.setAttribute("disabled","disabled");
 
- refs.buttonStart.setAttribute("disabled",true)
 
 const options = {
   enableTime: true,
@@ -41,8 +41,9 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
     onClose(selectedDates) {
-        selectDate = selectedDates[0];
-      if (selectedDates[0] <  new Date()) {
+      selectDate = selectedDates[0];
+      const currentDate = Date.now();
+      if (selectedDates[0] < currentDate) {
           alert("Please choose a date in the future")
       } else {
           refs.buttonStart.removeAttribute("disabled");
@@ -66,13 +67,16 @@ function onStartClick() {
      updateTime(time)
 
 
-
+ refs.buttonStart.setAttribute("disabled","disabled")
   if (deltaTime <= 1000) {
       clearInterval(timerId);
 
     }
     }, 1000)
 }
+
+
+
 
 
 
